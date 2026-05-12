@@ -29,6 +29,7 @@ Cardio-IA-IoT/
 ├── wokwi_hardware/
 │   ├── main.cpp                   # Código em C++ do ESP32 (Lógica de sensores, MQTT e Buffer Offline)
 │   ├── diagram.json               # Estrutura e pinagem do circuito simulado no Wokwi
+│   ├── link_wokwi                 # Link de simulação no wokwi
 │   └── wokwi.toml                 # Configurações do ambiente de simulação
 │
 ├── node_red_dashboard/
