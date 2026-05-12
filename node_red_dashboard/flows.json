@@ -1,0 +1,321 @@
+[
+    {
+        "id": "d17da3c11664b587",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b9566af359ada2a2",
+        "type": "mqtt-broker",
+        "name": "CardioIA-Server",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "28850f239ac8fc0b",
+        "type": "ui_tab",
+        "name": "Painel Médico",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e7d0c7cd1c1bd3dd",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "fa3a3e4b2209cb26",
+        "type": "ui_group",
+        "name": "Sinais Vitais",
+        "tab": "28850f239ac8fc0b",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "75fe8e7d19404fa1",
+        "type": "mqtt in",
+        "z": "d17da3c11664b587",
+        "name": "CardioIA",
+        "topic": "cardioia/nicolas/sinais",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "b9566af359ada2a2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "5b6a3f73d86ab015"
+            ]
+        ]
+    },
+    {
+        "id": "5b6a3f73d86ab015",
+        "type": "json",
+        "z": "d17da3c11664b587",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "f37a23424f363451"
+            ]
+        ]
+    },
+    {
+        "id": "f37a23424f363451",
+        "type": "function",
+        "z": "d17da3c11664b587",
+        "name": "function 1",
+        "func": "// Garante que o dado vire um Objeto JSON\nlet dados = typeof msg.payload === \"string\" ? JSON.parse(msg.payload) : msg.payload;\n\n// Converte para garantir cálculos com números\nlet temp = parseFloat(dados.temperatura);\nlet bpm = parseInt(dados.bpm);\n\nlet statusTemp = \"\";\nlet statusBpm = \"\";\nlet alertaCritico = false;\n\n// 1. Diagnóstico da Temperatura\nif (temp < 35.0) {\n    statusTemp = \"Hipotermia\";\n    alertaCritico = true;\n} else if (temp >= 35.0 && temp < 36.0) {\n    statusTemp = \"Temp. Baixa\";\n} else if (temp >= 36.0 && temp <= 37.5) {\n    statusTemp = \"Temp. Normal\";\n} else if (temp > 37.5 && temp <= 38.5) {\n    statusTemp = \"Febre\";\n} else if (temp > 38.5) {\n    statusTemp = \"Febre Alta\";\n    alertaCritico = true;\n}\n\n// 2. Diagnóstico dos Batimentos (BPM)\nif (bpm < 50) {\n    statusBpm = \"Bradicardia Severa\";\n    alertaCritico = true;\n} else if (bpm >= 50 && bpm < 60) {\n    statusBpm = \"Bradicardia\";\n} else if (bpm >= 60 && bpm <= 100) {\n    statusBpm = \"Batimentos Normais\";\n} else if (bpm > 100 && bpm <= 120) {\n    statusBpm = \"Taquicardia\";\n} else if (bpm > 120) {\n    statusBpm = \"Taquicardia Severa\";\n    alertaCritico = true;\n}\n\n// 3. Status\nlet statusGeral = \"✅ Paciente Estável\";\n\nif (alertaCritico) {\n    statusGeral = `🚨 CRÍTICO! ${statusTemp} | ${statusBpm}`;\n} else if (statusTemp !== \"Temp. Normal\" || statusBpm !== \"Batimentos Normais\") {\n    statusGeral = `⚠️ ATENÇÃO: ${statusTemp} | ${statusBpm}`;\n} else {\n    statusGeral = \"✅ Paciente Estável (Sinais Normais)\";\n}\n\n// Retorna as mensagens separadas para as 3 saídas\nreturn [{payload: temp}, {payload: bpm}, {payload: statusGeral}];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "7380b60d598f023e"
+            ],
+            [
+                "95639cc69db5d68f"
+            ],
+            [
+                "70738cb012bd81d6"
+            ]
+        ]
+    },
+    {
+        "id": "7380b60d598f023e",
+        "type": "ui_gauge",
+        "z": "d17da3c11664b587",
+        "name": "",
+        "group": "fa3a3e4b2209cb26",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#1982c4",
+            "#8ac926",
+            "#ff595e"
+        ],
+        "seg1": "35",
+        "seg2": "37.5",
+        "diff": false,
+        "className": "",
+        "x": 610,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "95639cc69db5d68f",
+        "type": "ui_chart",
+        "z": "d17da3c11664b587",
+        "name": "",
+        "group": "fa3a3e4b2209cb26",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Batimentos (BPM)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70738cb012bd81d6",
+        "type": "ui_text",
+        "z": "d17da3c11664b587",
+        "group": "fa3a3e4b2209cb26",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Status do Paciente",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2d1d7c71152be57b",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
