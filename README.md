@@ -26,14 +26,16 @@ A organização do repositório separa o código do microcontrolador (Borda) das
 ```text
 Cardio-IA-IoT/
 │
+├── Assets/                        # Imagens e PDFs
+│
+├── node_red_dashboard/
+│   └── flows.json                 # Arquivo exportado contendo toda a lógica e visual do painel
+│
 ├── wokwi_hardware/
 │   ├── main.cpp                   # Código em C++ do ESP32 (Lógica de sensores, MQTT e Buffer Offline)
 │   ├── diagram.json               # Estrutura e pinagem do circuito simulado no Wokwi
 │   ├── link_wokwi                 # Link de simulação no wokwi
 │   └── wokwi.toml                 # Configurações do ambiente de simulação
-│
-├── node_red_dashboard/
-│   └── flows.json                 # Arquivo exportado contendo toda a lógica e visual do painel
 │
 └── README.md                      # Documentação principal
 ````
@@ -43,6 +45,7 @@ Cardio-IA-IoT/
 Para garantir a escalabilidade e a modularidade do sistema em um ambiente hospitalar, o fluxo de dados foi dividido em blocos independentes que se comunicam via protocolo MQTT:
 
 ### 🩺 Parte 1: Coleta e Processamento (ESP32 + Sensores)
+![ckt](https://github.com/lab-ia-shared/Cardio-IA-3/blob/5c3adfdc2a851b43d028dc7beb53886533119558/Assets/wokwi-ckt.png)
 **Ferramenta:** Wokwi Simulator | **Linguagem:** C++
 Este módulo atua junto ao corpo do paciente. O código `main.cpp` realiza as seguintes funções:
 * **Sensores:** Lê dados de um DHT22 (Temperatura) e um Potenciômetro (simulando a variabilidade dos Batimentos por Minuto - BPM mapeados de 40 a 180).
@@ -54,9 +57,9 @@ Este módulo atua junto ao corpo do paciente. O código `main.cpp` realiza as se
 Atua como a "antena" central do hospital. Ele recebe as mensagens publicadas pelo ESP32 no tópico `cardioia/nicolas/sinais` e as distribui instantaneamente para qualquer sistema que esteja escutando este mesmo "canal".
 
 ### 🧠 Parte 3: Triagem Inteligente e Dashboard (Node-RED)
-![Dashboard1()
-![Dashboard1()
-![Dashboard1()
+![Dashboard1](https://github.com/lab-ia-shared/Cardio-IA-3/blob/5c3adfdc2a851b43d028dc7beb53886533119558/Assets/dashboard-hipotermia-taquicardia.png)
+![Dashboard2](https://github.com/lab-ia-shared/Cardio-IA-3/blob/5c3adfdc2a851b43d028dc7beb53886533119558/Assets/dashboard-sinais-normais.png)
+![Dashboard3](https://github.com/lab-ia-shared/Cardio-IA-3/blob/5c3adfdc2a851b43d028dc7beb53886533119558/Assets/dashboard-febre-bradicardia.png)
 
 **Ferramenta:** Node-RED (Local/Cloud)
 Este módulo consome o arquivo `flows.json`. Ele assina o tópico MQTT e, a cada nova mensagem recebida, aciona um script interno (Nó de Função JavaScript) que atua como médico triador:
