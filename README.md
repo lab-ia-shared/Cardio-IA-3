@@ -54,6 +54,10 @@ Este módulo atua junto ao corpo do paciente. O código `main.cpp` realiza as se
 Atua como a "antena" central do hospital. Ele recebe as mensagens publicadas pelo ESP32 no tópico `cardioia/nicolas/sinais` e as distribui instantaneamente para qualquer sistema que esteja escutando este mesmo "canal".
 
 ### 🧠 Parte 3: Triagem Inteligente e Dashboard (Node-RED)
+![Dashboard1()
+![Dashboard1()
+![Dashboard1()
+
 **Ferramenta:** Node-RED (Local/Cloud)
 Este módulo consome o arquivo `flows.json`. Ele assina o tópico MQTT e, a cada nova mensagem recebida, aciona um script interno (Nó de Função JavaScript) que atua como médico triador:
 * **Diagnóstico da Temperatura:** Classifica em Hipotermia (< 35°C), Normal, Febre ou Febre Alta (> 38.5°C).
