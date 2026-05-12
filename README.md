@@ -1,4 +1,4 @@
-# 💓 CardioIA - Fase: Monitoramento IoT e Edge Computing
+# 💓 CardioIA - Fase 3: Monitoramento IoT e Edge Computing
 
 ## 📋 Descrição do Projeto
 
