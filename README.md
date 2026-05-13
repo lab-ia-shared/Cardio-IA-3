@@ -15,7 +15,7 @@ Desenvolvemos três camadas principais de solução:
 
 ## 🎬 Vídeo Demonstrativo
 Confira a demonstração completa da arquitetura IoT, simulação de queda de rede e funcionamento do Dashboard no Node-RED:
-<video src="" autoplay loop muted playsinline width="100%"></video>
+<video src="https://github.com/lab-ia-shared/Cardio-IA-3/raw/refs/heads/main/Assets/CardioIA.mp4" autoplay loop muted playsinline width="100%"></video>
 
 ---
 
