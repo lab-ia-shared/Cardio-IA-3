@@ -15,7 +15,7 @@ Desenvolvemos três camadas principais de solução:
 
 ## 🎬 Vídeo Demonstrativo
 Confira a demonstração completa da arquitetura IoT, simulação de queda de rede e funcionamento do Dashboard no Node-RED:
-[CLIQUE AQUI PARA ASSISTIR A SIMULAÇÃO](https://youtu.be/TjnKB5kaavM](https://www.youtube.com/watch?v=TjnKB5kaavM)
+[CLIQUE AQUI PARA ASSISTIR AO VÍDEO NO YOUTUBE](https://www.youtube.com/watch?v=TjnKB5kaavM)
 
 ---
 
